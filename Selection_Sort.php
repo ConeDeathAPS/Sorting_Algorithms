@@ -12,11 +12,15 @@ function selection_sort($arr) {
 
 	for ($x = 0; $x < count($arr); $x++) {
 		$min = $arr[$x];
+		$max = $arr[$x];
 		for ($i = $x; $i < count($arr); $i++) {
 			if ($arr[$i] < $min) {
 				$min = $arr[$i];
 				$arr = array_swap($arr, $i, $x);
-			} 
+			} else if ($arr[$i] > $max) {
+				$max = $arr[$i];
+				$arr = array_swap($arr, count($arr) - 1, $i);
+			}
 		}
 	}
 	var_dump($arr);
@@ -25,11 +29,10 @@ function selection_sort($arr) {
 }
 
 $arr = array();
-for ($o = 1; $o <= 1000; $o++) {
+for ($o = 1; $o <= 10000; $o++) {
 	$i = rand(1, 10000);
 	$arr[] = $i;
 } 
-
 
 selection_sort($arr);
 
